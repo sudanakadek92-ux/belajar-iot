@@ -13,11 +13,11 @@
     }
 
     body {
-      background-color: #e5e7eb;
-      color: #1f2937;
+      background-color: #cbd5e1;
+      color: #1e293b;
       display: flex;
       justify-content: center;
-      padding: 16px 8px;
+      padding: 12px 6px 50px;
     }
 
     .mobile-container {
@@ -25,7 +25,7 @@
       max-width: 390px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       position: relative;
     }
 
@@ -66,20 +66,47 @@
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 20px;
-      letter-spacing: 0.3px;
     }
 
     .header-sub {
-      font-size: 13px;
-      opacity: 0.9;
-      line-height: 1.4;
+      font-size: 12.5px;
+      opacity: 0.95;
+      line-height: 1.45;
+    }
+
+    /* Nav Pills */
+    .nav-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .nav-pills::-webkit-scrollbar { display: none; }
+    
+    .pill-btn {
+      white-space: nowrap;
+      padding: 7px 12px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #334155;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .pill-btn:hover, .pill-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
     }
 
     /* Section Title */
     .section-title {
       font-size: 15px;
       font-weight: 700;
-      color: #111827;
+      color: #0f172a;
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -98,21 +125,12 @@
       background-color: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 10px 6px;
+      padding: 10px 4px;
       text-align: center;
     }
 
-    .live-label {
-      font-size: 11px;
-      color: #64748b;
-      margin-bottom: 4px;
-    }
-
-    .live-val {
-      font-size: 17px;
-      font-weight: 800;
-      color: #0f172a;
-    }
+    .live-label { font-size: 10.5px; color: #64748b; margin-bottom: 4px; }
+    .live-val { font-size: 16px; font-weight: 800; color: #0f172a; }
 
     .live-footer {
       font-size: 11px;
@@ -138,38 +156,290 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
-    /* Simulator */
-    .slider-group {
+    /* FILTER HARDWARE */
+    .filter-chips {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-chips::-webkit-scrollbar { display: none; }
+    
+    .chip {
+      padding: 5px 12px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .chip.active {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    /* HARDWARE CARDS WITH INTERACTION */
+    .hw-grid {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 14px;
     }
 
-    .slider-row {
+    .sensor-item-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 12px;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
-    .slider-header {
+    .sic-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sic-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .sic-info h4 {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .sic-info p {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .sic-badge {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    .badge-sensor { background: #dcfce7; color: #15803d; }
+    .badge-board { background: #e0e7ff; color: #4338ca; }
+    .badge-actuator { background: #fef3c7; color: #b45309; }
+
+    .open-lab-btn {
+      width: 100%;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 9px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    }
+
+    /* MODAL POPUP STUDIO / LAB */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 375px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 18px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: #f1f5f9;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 800;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-hero {
+      text-align: center;
+      padding: 10px 0;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .modal-hero-icon {
+      font-size: 48px;
+      margin-bottom: 4px;
+    }
+
+    .modal-hero-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .modal-hero-sub {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    /* Interactive Lab Screen Inside Modal */
+    .lab-screen {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .lab-screen-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #38bdf8;
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      font-weight: 600;
-      color: #374151;
     }
 
-    .slider-input {
+    .lab-control-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .lab-control-label {
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .lab-slider {
       width: 100%;
-      height: 6px;
-      border-radius: 4px;
-      background: #e2e8f0;
-      outline: none;
-      accent-color: #0284c7;
+      accent-color: #38bdf8;
       cursor: pointer;
     }
 
+    .lab-visual-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .serial-log {
+      font-family: monospace;
+      font-size: 10.5px;
+      color: #4ade80;
+      background: #020617;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid #1e293b;
+      text-align: left;
+      overflow-x: auto;
+    }
+
+    /* Info Accordions in Modal */
+    .lab-info-block {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      color: #334155;
+      line-height: 1.45;
+    }
+
+    .lab-info-block h5 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pinout-table {
+      width: 100%;
+      font-size: 11px;
+      border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .pinout-table th, .pinout-table td {
+      border: 1px solid #e2e8f0;
+      padding: 4px 6px;
+      text-align: left;
+    }
+    .pinout-table th { background: #f1f5f9; }
+
+    /* SIMULATOR GLOBAL */
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .slider-row { display: flex; flex-direction: column; gap: 4px; }
+    .slider-header { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #374151; }
+    .slider-input { width: 100%; height: 6px; border-radius: 4px; background: #e2e8f0; accent-color: #0284c7; cursor: pointer; }
+    
     .sim-status-box {
       background-color: #f0fdf4;
       border: 1px dashed #86efac;
@@ -179,195 +449,62 @@
       flex-direction: column;
       gap: 6px;
     }
+    .sim-tag { font-size: 12px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    .status-on { color: #dc2626; background-color: #fee2e2; padding: 2px 8px; border-radius: 6px; }
+    .status-off { color: #16a34a; background-color: #dcfce7; padding: 2px 8px; border-radius: 6px; }
 
-    .sim-tag {
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .status-on {
-      color: #dc2626;
-      background-color: #fee2e2;
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-
-    .status-off {
-      color: #16a34a;
-      background-color: #dcfce7;
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-
-    /* Jalur Belajar */
-    .track-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .track-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px;
-      border-radius: 12px;
-      background: #f8fafc;
-      border: 1px solid #f1f5f9;
-    }
-
-    .track-num {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: #0284c7;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .track-info h4 {
-      font-size: 13px;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 2px;
-    }
-
-    .track-info p {
-      font-size: 11px;
-      color: #64748b;
-      line-height: 1.4;
-    }
-
-    /* Kuis */
-    .quiz-q {
-      font-size: 13px;
-      font-weight: 600;
-      color: #1e293b;
-      margin-bottom: 10px;
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .quiz-opt {
-      padding: 10px 12px;
+    /* PROYEK CARDS */
+    .proj-card {
       border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      font-size: 12px;
-      color: #334155;
-      cursor: pointer;
-      background: #fff;
-      transition: all 0.2s ease;
-      text-align: left;
-    }
-
-    .quiz-opt:hover {
-      background: #f1f5f9;
-    }
-
-    .quiz-opt.selected-correct {
-      border-color: #22c55e;
-      background: #f0fdf4;
-      color: #15803d;
-      font-weight: 700;
-    }
-
-    .quiz-opt.selected-wrong {
-      border-color: #ef4444;
-      background: #fef2f2;
-      color: #b91c1c;
-      font-weight: 700;
-    }
-
-    .quiz-result {
-      font-size: 12px;
-      font-weight: 700;
-      min-height: 18px;
-    }
-
-    .quiz-result.correct {
-      color: #16a34a;
-    }
-
-    .quiz-result.wrong {
-      color: #dc2626;
-    }
-
-    /* Form Pendaftaran */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      border-radius: 14px;
+      padding: 12px;
+      background: #ffffff;
       margin-bottom: 10px;
     }
+    .proj-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .proj-title { font-size: 13.5px; font-weight: 700; color: #0f172a; }
+    .proj-level { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px; background: #f1f5f9; color: #334155; }
+    .proj-desc { font-size: 11.5px; color: #475569; line-height: 1.4; margin-bottom: 6px; }
+    .proj-toggle { font-size: 11.5px; font-weight: 700; color: #0284c7; background: none; border: none; cursor: pointer; padding: 0; }
+    .proj-detail { background: #f8fafc; border-radius: 8px; padding: 8px 10px; font-size: 11px; color: #334155; display: none; border-left: 3px solid #0284c7; margin-top: 6px; line-height: 1.45; }
 
-    .form-group label {
+    /* AUTH & AKUN SISWA */
+    .auth-tab-switch {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 12px;
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      background: none;
       font-size: 12px;
-      font-weight: 600;
-      color: #374151;
+      font-weight: 700;
+      color: #64748b;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .auth-tab-btn.active {
+      background: #ffffff;
+      color: #0284c7;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.06);
     }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .form-group label { font-size: 12px; font-weight: 600; color: #374151; }
+    .form-group input, .form-group select {
       width: 100%;
       padding: 9px 12px;
       font-size: 13px;
       border: 1px solid #cbd5e1;
       border-radius: 10px;
       outline: none;
-      background-color: #ffffff;
-      color: #1f2937;
+      background: #ffffff;
     }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #0284c7;
-      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 60px;
-    }
-
-    .form-checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin: 10px 0;
-    }
-
-    .form-checkbox input {
-      margin-top: 3px;
-      cursor: pointer;
-    }
-
-    .form-checkbox label {
-      font-size: 11px;
-      color: #4b5563;
-      cursor: pointer;
-      line-height: 1.4;
-    }
-
-    .err-msg {
-      font-size: 11px;
-      color: #dc2626;
-      display: none;
-      margin-top: 2px;
-    }
+    .err-msg { font-size: 11px; color: #dc2626; display: none; margin-top: 2px; }
 
     .submit-btn {
       width: 100%;
@@ -380,12 +517,51 @@
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-      transition: opacity 0.2s ease;
     }
 
-    .submit-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+    /* MEMBER CARD */
+    .user-card {
+      display: none;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      position: relative;
+    }
+    .uc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .uc-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .uc-name { font-size: 17px; font-weight: 800; }
+    .uc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+      background: rgba(255,255,255,0.06);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .uc-lbl { font-size: 10px; color: #94a3b8; }
+    .uc-val { font-size: 12px; font-weight: 700; color: #38bdf8; }
+    .logout-btn {
+      width: 100%;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #fca5a5;
+      padding: 8px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     /* Toast */
@@ -401,24 +577,66 @@
       font-size: 13px;
       font-weight: 600;
       box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
-      z-index: 9999;
+      z-index: 99999;
       transition: transform 0.3s ease, opacity 0.3s ease;
       opacity: 0;
       text-align: center;
       max-width: 350px;
       width: 90%;
     }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
   </style>
 </head>
 <body>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">Pendaftaran berhasil! Selamat belajar IoT.</div>
+  <div id="toast" class="toast">Pemberitahuan</div>
+
+  <!-- MODAL INTERAKTIF STUDIO SENSOR -->
+  <div id="sensor-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeSensorModal()">✕</button>
+
+      <div class="modal-hero">
+        <div class="modal-hero-icon" id="m-icon">🌡️</div>
+        <div class="modal-hero-title" id="m-title">Sensor DHT11</div>
+        <div class="modal-hero-sub" id="m-sub">Sensor Digital Suhu & Kelembapan</div>
+      </div>
+
+      <!-- Simulator Interaktif Sensor Terpilih -->
+      <div class="lab-screen">
+        <div class="lab-screen-title">
+          <span>🔬 SIMULATOR INTERAKTIF</span>
+          <span style="color:#4ade80;">● ONLINE</span>
+        </div>
+
+        <div id="m-controls" class="lab-control-row"></div>
+
+        <div class="lab-visual-box" id="m-visual"></div>
+
+        <div class="serial-log" id="m-serial">[Serial Output]: Menunggu input...</div>
+      </div>
+
+      <!-- Penjelasan & Cara Kerja -->
+      <div class="lab-info-block">
+        <h5>💡 Cara Kerja:</h5>
+        <p id="m-desc">Deskripsi cara kerja sensor.</p>
+      </div>
+
+      <!-- Skema Wiring ESP32 -->
+      <div class="lab-info-block">
+        <h5>🔌 Skema Kabel ke ESP32:</h5>
+        <table class="pinout-table" id="m-pinout"></table>
+      </div>
+
+      <!-- Kode Contoh Arduino -->
+      <div class="lab-info-block">
+        <h5>💻 Contoh Kode C++ (Arduino IDE):</h5>
+        <pre style="background:#0f172a; color:#f8fafc; padding:8px; border-radius:6px; font-size:10px; overflow-x:auto;" id="m-code">void setup() { ... }</pre>
+      </div>
+
+      <button type="button" class="open-lab-btn" onclick="closeSensorModal()">Selesai Mencoba</button>
+    </div>
+  </div>
 
   <div class="mobile-container">
     
@@ -428,58 +646,138 @@
         <div class="header-title">Belajar IoT</div>
         <div class="badge">Gratis • Pemula</div>
       </div>
-      <div class="header-sub">Platform edukasi dasar mikrokontroler & sensor pintar untuk masa depan.</div>
+      <div class="header-sub">Belajar mikrokontroler, coba simulasi sensor langsung, dan buat proyek IoT pertamamu!</div>
     </div>
 
-    <!-- 2. Data Live -->
-    <div class="card">
-      <div class="section-title">📡 Data Sensor Live</div>
-      <div class="live-grid">
-        <div class="live-item">
-          <div class="live-label">Suhu</div>
-          <div class="live-val" id="val-suhu">-- °C</div>
-        </div>
-        <div class="live-item">
-          <div class="live-label">Kelembapan</div>
-          <div class="live-val" id="val-kelembapan">-- %</div>
-        </div>
-        <div class="live-item">
-          <div class="live-label">Jarak</div>
-          <div class="live-val" id="val-jarak">-- cm</div>
-        </div>
+    <!-- Quick Navigation Pills -->
+    <div class="nav-pills">
+      <a href="#lab-sec" class="pill-btn">🔬 Lab Sensor</a>
+      <a href="#sim-sec" class="pill-btn">🎛️ Simulator</a>
+      <a href="#live-sec" class="pill-btn">📡 Live Data</a>
+      <a href="#proj-sec" class="pill-btn">🚀 Ide Proyek</a>
+      <a href="#auth-sec" class="pill-btn">👤 Akun Siswa</a>
+    </div>
+
+    <!-- 2. FITUR UTAMA BARU: LAB INTERAKTIF SENSOR & BOARD -->
+    <div class="card" id="lab-sec">
+      <div class="section-title">⚡ Laboratorium Sensor & Board</div>
+      <p style="font-size:11.5px; color:#64748b; margin-bottom:12px;">Pilih salah satu komponen di bawah ini untuk melihat <strong>gambar, skema kabel, tutorial, dan simulasinya</strong>:</p>
+
+      <!-- Filter Chips -->
+      <div class="filter-chips">
+        <button class="chip active" onclick="filterHw('all', this)">Semua</button>
+        <button class="chip" onclick="filterHw('sensor', this)">Sensor</button>
+        <button class="chip" onclick="filterHw('board', this)">Board IoT</button>
+        <button class="chip" onclick="filterHw('actuator', this)">Aktuator</button>
       </div>
-      <div class="live-footer">
-        <span><span class="pulse-dot"></span> Auto-update (5s)</span>
-        <span id="last-update">Memuat data...</span>
+
+      <div class="hw-grid">
+        <!-- 1. DHT11 -->
+        <div class="sensor-item-card" data-cat="sensor">
+          <div class="sic-header">
+            <div class="sic-icon-box">🌡️</div>
+            <div class="sic-info">
+              <h4>DHT11 (Suhu & Lembab)</h4>
+              <p>Membaca suhu udara & persentase kelembapan.</p>
+            </div>
+            <span class="sic-badge badge-sensor">Sensor</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('dht11')">🔬 Buka Tutorial & Simulasi DHT11</button>
+        </div>
+
+        <!-- 2. Ultrasonic HC-SR04 -->
+        <div class="sensor-item-card" data-cat="sensor">
+          <div class="sic-header">
+            <div class="sic-icon-box">🦇</div>
+            <div class="sic-info">
+              <h4>Ultrasonic HC-SR04</h4>
+              <p>Sensor jarak sonar pantulan suara.</p>
+            </div>
+            <span class="sic-badge badge-sensor">Sensor</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('ultrasonic')">🔬 Buka Tutorial & Simulasi Sonar</button>
+        </div>
+
+        <!-- 3. Sensor Cahaya LDR -->
+        <div class="sensor-item-card" data-cat="sensor">
+          <div class="sic-header">
+            <div class="sic-icon-box">☀️</div>
+            <div class="sic-info">
+              <h4>Sensor Cahaya (LDR)</h4>
+              <p>Deteksi kondisi terang vs gelap otomatis.</p>
+            </div>
+            <span class="sic-badge badge-sensor">Sensor</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('ldr')">🔬 Buka Tutorial & Simulasi LDR</button>
+        </div>
+
+        <!-- 4. Sensor Gerak PIR -->
+        <div class="sensor-item-card" data-cat="sensor">
+          <div class="sic-header">
+            <div class="sic-icon-box">🚶</div>
+            <div class="sic-info">
+              <h4>Sensor Gerak (PIR)</h4>
+              <p>Mendeteksi gerakan radiasi panas tubuh.</p>
+            </div>
+            <span class="sic-badge badge-sensor">Sensor</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('pir')">🔬 Buka Tutorial & Simulasi PIR</button>
+        </div>
+
+        <!-- 5. ESP32 Board -->
+        <div class="sic-header sensor-item-card" data-cat="board" style="display:flex; flex-direction:column;">
+          <div style="display:flex; align-items:center; gap:10px; width:100%;">
+            <div class="sic-icon-box">🔌</div>
+            <div class="sic-info">
+              <h4>ESP32 Development Board</h4>
+              <p>Otak mikrokontroler dengan WiFi & Bluetooth.</p>
+            </div>
+            <span class="sic-badge badge-board">Board</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('esp32')">🔬 Buka Tutorial & Uji WiFi ESP32</button>
+        </div>
+
+        <!-- 6. Buzzer Alarm -->
+        <div class="sensor-item-card" data-cat="actuator">
+          <div class="sic-header">
+            <div class="sic-icon-box">🚨</div>
+            <div class="sic-info">
+              <h4>Buzzer 5V (Alarm)</h4>
+              <p>Pengeluar suara peringatan darurat.</p>
+            </div>
+            <span class="sic-badge badge-actuator">Aktuator</span>
+          </div>
+          <button class="open-lab-btn" onclick="openSensorLab('buzzer')">🔬 Buka Tutorial & Tes Bunyi Buzzer</button>
+        </div>
       </div>
     </div>
 
-    <!-- 3. Simulator -->
-    <div class="card">
-      <div class="section-title">🎛️ Simulator Logika IoT</div>
+    <!-- 3. SIMULATOR LOGIKA MULTI-SENSOR -->
+    <div class="card" id="sim-sec">
+      <div class="section-title">🎛️ Simulator Logika Otomatisasi</div>
       <div class="slider-group">
         <div class="slider-row">
           <div class="slider-header">
-            <span>Suhu: <strong id="sim-suhu-val">28</strong>°C</span>
-            <span style="font-size: 11px; color:#64748b;">(Ambang: &gt; 32°C)</span>
+            <span>Suhu Ruangan: <strong id="sim-suhu-val">28</strong>°C</span>
+            <span style="font-size: 11px; color:#64748b;">(Kipas &gt; 32°C)</span>
           </div>
-          <input type="range" class="slider-input" id="sim-suhu" min="15" max="50" value="28" oninput="runSimulation()">
+          <input type="range" class="slider-input" id="sim-suhu" min="15" max="50" value="28" oninput="runSimGlobal()">
         </div>
 
         <div class="slider-row">
           <div class="slider-header">
-            <span>Kelembapan: <strong id="sim-lembab-val">60</strong>%</span>
-            <span style="font-size: 11px; color:#64748b;">(Ambang: &lt; 40%)</span>
+            <span>Kelembapan Udara: <strong id="sim-lembab-val">60</strong>%</span>
+            <span style="font-size: 11px; color:#64748b;">(Pompa &lt; 40%)</span>
           </div>
-          <input type="range" class="slider-input" id="sim-lembab" min="10" max="100" value="60" oninput="runSimulation()">
+          <input type="range" class="slider-input" id="sim-lembab" min="10" max="100" value="60" oninput="runSimGlobal()">
         </div>
 
         <div class="slider-row">
           <div class="slider-header">
-            <span>Jarak Objek: <strong id="sim-jarak-val">30</strong> cm</span>
-            <span style="font-size: 11px; color:#64748b;">(Ambang: &lt; 15 cm)</span>
+            <span>Jarak Objek Halangan: <strong id="sim-jarak-val">30</strong> cm</span>
+            <span style="font-size: 11px; color:#64748b;">(Buzzer &lt; 15cm)</span>
           </div>
-          <input type="range" class="slider-input" id="sim-jarak" min="2" max="100" value="30" oninput="runSimulation()">
+          <input type="range" class="slider-input" id="sim-jarak" min="2" max="100" value="30" oninput="runSimGlobal()">
         </div>
       </div>
 
@@ -493,353 +791,594 @@
           <span id="status-buzzer" class="status-off">Buzzer MATI</span>
         </div>
         <div class="sim-tag">
-          <span>Pompa Air:</span>
+          <span>Pompa Siram Air:</span>
           <span id="status-pompa" class="status-off">Pompa MATI</span>
         </div>
       </div>
     </div>
 
-    <!-- 4. Jalur Belajar -->
-    <div class="card">
-      <div class="section-title">🗺️ Jalur Belajar</div>
-      <div class="track-list">
-        <div class="track-item">
-          <div class="track-num">1</div>
-          <div class="track-info">
-            <h4>Level 1: Dasar IoT</h4>
-            <p>Pahami input, proses, output mikrokontroler (ESP32/Arduino) dan koneksi WiFi.</p>
-          </div>
+    <!-- 4. LIVE MONITORING -->
+    <div class="card" id="live-sec">
+      <div class="section-title">📡 Live IoT Data Stream</div>
+      <div class="live-grid">
+        <div class="live-item">
+          <div class="live-label">Suhu</div>
+          <div class="live-val" id="val-suhu">28.4 °C</div>
         </div>
-        <div class="track-item">
-          <div class="track-num">2</div>
-          <div class="track-info">
-            <h4>Level 2: Kenal Sensor</h4>
-            <p>Eksplorasi sensor DHT11, Ultrasonic HC-SR04, LDR, serta pembacaan sinyal digital/analog.</p>
-          </div>
+        <div class="live-item">
+          <div class="live-label">Kelembapan</div>
+          <div class="live-val" id="val-kelembapan">62 %</div>
         </div>
-        <div class="track-item">
-          <div class="track-num">3</div>
-          <div class="track-info">
-            <h4>Level 3: Bikin Project</h4>
-            <p>Bangun smart home otomatis, kirim data ke Google Sheets, dan monitoring via smartphone.</p>
-          </div>
+        <div class="live-item">
+          <div class="live-label">Jarak</div>
+          <div class="live-val" id="val-jarak">24 cm</div>
+        </div>
+      </div>
+      <div class="live-footer">
+        <span><span class="pulse-dot"></span> Auto-update (5s)</span>
+        <span id="last-update">Baru saja</span>
+      </div>
+    </div>
+
+    <!-- 5. IDE PROYEK IOT -->
+    <div class="card" id="proj-sec">
+      <div class="section-title">🚀 Ide Proyek Nyata</div>
+      
+      <div class="proj-card">
+        <div class="proj-head">
+          <span class="proj-title">1. Weather Station IoT Mini</span>
+          <span class="proj-level">⭐ Pemula</span>
+        </div>
+        <p class="proj-desc">Monitoring suhu dan kelembapan kamar dari HP menggunakan ESP32 & DHT11.</p>
+        <button class="proj-toggle" onclick="toggleDetail('proj-1', this)">▶ Lihat Skema & Alur</button>
+        <div class="proj-detail" id="proj-1">
+          <strong>Komponen:</strong> ESP32 + DHT11 + Kabel Jumper.<br>
+          <strong>Alur:</strong> ESP32 membaca data pin DHT11 setiap 2 detik lalu mengirimkan data suhu ke cloud dashboard.
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-head">
+          <span class="proj-title">2. Radar Anti-Maling</span>
+          <span class="proj-level">⭐ Pemula</span>
+        </div>
+        <p class="proj-desc">Alarm pengaman pintu rumah. Buzzer berbunyi saat ada orang mendekat.</p>
+        <button class="proj-toggle" onclick="toggleDetail('proj-2', this)">▶ Lihat Skema & Alur</button>
+        <div class="proj-detail" id="proj-2">
+          <strong>Komponen:</strong> ESP32/Arduino + Ultrasonic HC-SR04 + Buzzer.<br>
+          <strong>Alur:</strong> Bila objek terdeteksi &lt; 15 cm, pin buzzer dinyalakan HIGH secara berkedip cepat.
         </div>
       </div>
     </div>
 
-    <!-- 5. Kuis -->
-    <div class="card">
-      <div class="section-title">❓ Kuis Singkat</div>
-      <div class="quiz-q">Sensor apa yang memanfaatkan pantulan gelombang suara untuk mengukur jarak?</div>
-      <div class="quiz-options">
-        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">A. DHT11</button>
-        <button type="button" class="quiz-opt" onclick="checkQuiz(this, true)">B. Ultrasonic HC-SR04</button>
-        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">C. Sensor Sentuh TTP223</button>
-        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">D. Passive Buzzer</button>
+    <!-- 6. SISTEM AKUN & LOGIN SISWA -->
+    <div class="card" id="auth-sec">
+      <div class="section-title">👤 Akun Siswa IoT</div>
+
+      <!-- TAMPILAN DASHBOARD MEMBER JIKA SUDAH DAFTAR/LOGIN -->
+      <div id="member-dashboard" class="user-card">
+        <div class="uc-top">
+          <div class="uc-avatar" id="uc-avatar">B</div>
+          <div>
+            <div style="font-size:11px; color:#94a3b8; font-family:monospace;" id="uc-id">ID: IOT-0001</div>
+            <span style="font-size:10px; background:#10b981; color:#fff; padding:2px 8px; border-radius:12px; font-weight:700;">● Akun Aktif</span>
+          </div>
+        </div>
+        <div class="uc-name" id="uc-name">Nama Siswa</div>
+        <div style="font-size: 11px; color: #cbd5e1;" id="uc-role">Tingkat: SMA / SMK</div>
+
+        <div class="uc-grid">
+          <div>
+            <div class="uc-lbl">Target Belajar:</div>
+            <div class="uc-val" id="uc-level">Level 1: Dasar IoT</div>
+          </div>
+          <div>
+            <div class="uc-lbl">Sensor Favorit:</div>
+            <div class="uc-val" id="uc-sensor">DHT11</div>
+          </div>
+          <div>
+            <div class="uc-lbl">WhatsApp:</div>
+            <div class="uc-val" id="uc-wa">0812xxxx</div>
+          </div>
+          <div>
+            <div class="uc-lbl">Progres Latihan:</div>
+            <div class="uc-val" style="color:#4ade80;">Siap Belajar!</div>
+          </div>
+        </div>
+
+        <button type="button" class="logout-btn" onclick="logoutUser()">Keluar / Ganti Akun</button>
       </div>
-      <div class="quiz-result" id="quiz-result"></div>
-    </div>
 
-    <!-- 6. Form Pendaftaran -->
-    <div class="card">
-      <div class="section-title">📝 Formulir Pendaftaran</div>
-      <form id="regForm" onsubmit="handleFormSubmit(event)" novalidate>
-        
-        <div class="form-group">
-          <label for="nama">Nama Lengkap *</label>
-          <input type="text" id="nama" placeholder="Contoh: Budi Pratama">
-          <span class="err-msg" id="err-nama">Nama lengkap wajib diisi.</span>
+      <!-- FORM AUTH JIKA BELUM LOGIN -->
+      <div id="auth-form-container">
+        <div class="auth-tab-switch">
+          <button type="button" class="auth-tab-btn active" id="tab-reg-btn" onclick="switchAuthTab('reg')">Daftar Akun Baru</button>
+          <button type="button" class="auth-tab-btn" id="tab-login-btn" onclick="switchAuthTab('login')">Masuk (Login)</button>
         </div>
 
-        <div class="form-group">
-          <label for="kelas">Umur / Tingkat *</label>
-          <select id="kelas">
-            <option value="">-- Pilih Kategori --</option>
-            <option value="SMP">SMP</option>
-            <option value="SMA/SMK">SMA / SMK</option>
-            <option value="Mahasiswa">Mahasiswa</option>
-            <option value="Umum">Umum</option>
-          </select>
-          <span class="err-msg" id="err-kelas">Silakan pilih kategori umur/tingkat.</span>
-        </div>
+        <!-- FORM DAFTAR -->
+        <form id="regForm" onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="reg-nama">Nama Lengkap *</label>
+            <input type="text" id="reg-nama" placeholder="Contoh: Budi Pratama" required>
+            <span class="err-msg" id="err-nama">Nama wajib diisi.</span>
+          </div>
 
-        <div class="form-group">
-          <label for="wa">Nomor WhatsApp *</label>
-          <input type="tel" id="wa" placeholder="Contoh: 081234567890">
-          <span class="err-msg" id="err-wa">Nomor WhatsApp wajib diisi (minimal 10 digit).</span>
-        </div>
+          <div class="form-group">
+            <label for="reg-wa">Nomor WhatsApp *</label>
+            <input type="tel" id="reg-wa" placeholder="Contoh: 081234567890" required>
+            <span class="err-msg" id="err-wa">Nomor WA minimal 10 digit.</span>
+          </div>
 
-        <div class="form-group">
-          <label for="level">Level Yang Mau Dipelajari *</label>
-          <select id="level">
-            <option value="">-- Pilih Level --</option>
-            <option value="Level 1 Dasar IoT">Level 1: Dasar IoT</option>
-            <option value="Level 2 Kenal Sensor">Level 2: Kenal Sensor</option>
-            <option value="Level 3 Bikin Project">Level 3: Bikin Project</option>
-          </select>
-          <span class="err-msg" id="err-level">Pilih level yang ingin kamu pelajari.</span>
-        </div>
+          <div class="form-group">
+            <label for="reg-pin">PIN / Password (4-6 angka) *</label>
+            <input type="password" id="reg-pin" placeholder="Contoh: 1234" required>
+            <span class="err-msg" id="err-pin">PIN minimal 4 angka.</span>
+          </div>
 
-        <div class="form-group">
-          <label for="sensor">Sensor Favorit *</label>
-          <select id="sensor">
-            <option value="">-- Pilih Sensor Favorit --</option>
-            <option value="ESP32">ESP32 (Board IoT)</option>
-            <option value="DHT11">DHT11 (Suhu & Kelembapan)</option>
-            <option value="Ultrasonic">Ultrasonic (Jarak)</option>
-            <option value="Buzzer">Buzzer (Alarm Suara)</option>
-            <option value="Sensor Sentuh">Sensor Sentuh (Touch Sensor)</option>
-          </select>
-          <span class="err-msg" id="err-sensor">Pilih sensor yang paling menarik bagimu.</span>
-        </div>
+          <div class="form-group">
+            <label for="reg-kelas">Tingkat Pendidikan *</label>
+            <select id="reg-kelas">
+              <option value="SMP">SMP</option>
+              <option value="SMA/SMK" selected>SMA / SMK</option>
+              <option value="Mahasiswa">Mahasiswa</option>
+              <option value="Umum">Umum</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="alat">Punya Alat Sendiri? *</label>
-          <select id="alat">
-            <option value="">-- Pilih Status Alat --</option>
-            <option value="Sudah Punya">Sudah Punya Alat / Modul</option>
-            <option value="Belum Punya (Mau Beli)">Belum Punya, Berencana Beli</option>
-            <option value="Tidak Punya (Simulasi Saja)">Tidak Punya (Hanya Mau Simulasi)</option>
-          </select>
-          <span class="err-msg" id="err-alat">Silakan beri tahu ketersediaan alatmu.</span>
-        </div>
+          <div class="form-group">
+            <label for="reg-sensor">Sensor Yang Paling Ingin Dicoba *</label>
+            <select id="reg-sensor">
+              <option value="DHT11">DHT11 (Suhu & Lembab)</option>
+              <option value="Ultrasonic">Ultrasonic HC-SR04 (Jarak)</option>
+              <option value="LDR">Sensor Cahaya LDR</option>
+              <option value="PIR">Sensor Gerak PIR</option>
+              <option value="ESP32">ESP32 (Board WiFi)</option>
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="pertanyaan">Pertanyaan / Catatan (Opsional)</label>
-          <textarea id="pertanyaan" placeholder="Tuliskan jika ada pertanyaan atau topik yang ingin dibahas..."></textarea>
-        </div>
+          <button type="submit" class="submit-btn" id="btn-reg">Daftar & Buka Akun Sekarang</button>
+        </form>
 
-        <div class="form-checkbox">
-          <input type="checkbox" id="persetujuan">
-          <label for="persetujuan">Saya setuju mengikuti alur belajar dan bersedia menerima link materi via WhatsApp.</label>
-        </div>
-        <span class="err-msg" id="err-setuju" style="margin-bottom: 10px;">Kamu harus mencentang persetujuan ini.</span>
+        <!-- FORM LOGIN -->
+        <form id="loginForm" onsubmit="handleLogin(event)" style="display:none;">
+          <div class="form-group">
+            <label for="login-wa">Nomor WhatsApp Terdaftar *</label>
+            <input type="tel" id="login-wa" placeholder="081234567890" required>
+          </div>
 
-        <button type="submit" class="submit-btn" id="btn-submit">Daftar & Mulai Belajar</button>
-      </form>
+          <div class="form-group">
+            <label for="login-pin">PIN Akun *</label>
+            <input type="password" id="login-pin" placeholder="Masukkan PIN" required>
+          </div>
+
+          <button type="submit" class="submit-btn">Masuk ke Akun</button>
+        </form>
+      </div>
+
     </div>
 
   </div>
 
   <script>
-    // --- 1. LIVE DATA & AUTO REFRESH ---
-    function fetchLiveData() {
-      if (typeof google !== 'undefined' && google.script && google.script.run) {
-        google.script.run
-          .withSuccessHandler(function(res) {
-            if (res) {
-              document.getElementById('val-suhu').innerText = res.suhu + ' °C';
-              document.getElementById('val-kelembapan').innerText = res.kelembapan + ' %';
-              document.getElementById('val-jarak').innerText = res.jarak + ' cm';
-              document.getElementById('last-update').innerText = res.waktu || 'Baru saja';
-            }
-          })
-          .withFailureHandler(function(err) {
-            console.error(err);
-            document.getElementById('last-update').innerText = 'Gagal memuat';
-          })
-          .getLatestData();
-      } else {
-        // Fallback demo jika dibuka di preview browser tanpa Apps Script backend
-        var randomSuhu = (26 + Math.random() * 4).toFixed(1);
-        var randomLembab = Math.floor(55 + Math.random() * 15);
-        var randomJarak = Math.floor(15 + Math.random() * 30);
-        document.getElementById('val-suhu').innerText = randomSuhu + ' °C';
-        document.getElementById('val-kelembapan').innerText = randomLembab + ' %';
-        document.getElementById('val-jarak').innerText = randomJarak + ' cm';
-        document.getElementById('last-update').innerText = new Date().toLocaleTimeString('id-ID');
+    // --- 1. DATA DATABASE SENSOR UNTUK MODAL STUDIO ---
+    var SENSOR_DATABASE = {
+      dht11: {
+        icon: '🌡️',
+        title: 'Sensor DHT11',
+        subtitle: 'Sensor Digital Suhu & Kelembapan Udara',
+        desc: 'Sensor DHT11 memiliki termistor NTC untuk mengukur suhu dan sensor kapasitif untuk mengukur kelembapan udara. Mengirimkan data digital 1-Wire ke mikrokontroler.',
+        pinout: [
+          ['VCC', 'ESP32 3.3V / 5V', 'Daya positif'],
+          ['DATA', 'ESP32 GPIO 4', 'Jalur data sinyal'],
+          ['GND', 'ESP32 GND', 'Ground negatif']
+        ],
+        code: '#include "DHT.h"\n#define DHTPIN 4\n#define DHTTYPE DHT11\nDHT dht(DHTPIN, DHTTYPE);\n\nvoid setup() {\n  Serial.begin(115200);\n  dht.begin();\n}\nvoid loop() {\n  float h = dht.readHumidity();\n  float t = dht.readTemperature();\n  Serial.print("Suhu: "); Serial.print(t); Serial.println(" *C");\n  delay(2000);\n}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <div class="lab-control-label">
+              <span>Ubah Suhu Simulator:</span>
+              <span id="lab-dht-t-val" style="color:#38bdf8; font-weight:700;">28 °C</span>
+            </div>
+            <input type="range" class="lab-slider" id="lab-dht-t" min="10" max="50" value="28" oninput="updateDhtSim()">
+            
+            <div class="lab-control-label" style="margin-top:6px;">
+              <span>Ubah Kelembapan:</span>
+              <span id="lab-dht-h-val" style="color:#38bdf8; font-weight:700;">65 %</span>
+            </div>
+            <input type="range" class="lab-slider" id="lab-dht-h" min="20" max="95" value="65" oninput="updateDhtSim()">
+          `;
+          updateDhtSim();
+        }
+      },
+      ultrasonic: {
+        icon: '🦇',
+        title: 'HC-SR04 Ultrasonic',
+        subtitle: 'Sensor Jarak Gelombang Suara',
+        desc: 'Memancarkan gelombang suara 40kHz lewat pin Trig, lalu menghitung durasi waktu pantulan saat diterima kembali oleh pin Echo (Jarak = Waktu x Kecepatan Suara / 2).',
+        pinout: [
+          ['VCC', 'ESP32 5V', 'Daya sensor'],
+          ['Trig', 'ESP32 GPIO 5', 'Pemicu pancaran sonar'],
+          ['Echo', 'ESP32 GPIO 18', 'Penerima pantulan sonar'],
+          ['GND', 'ESP32 GND', 'Ground negatif']
+        ],
+        code: 'const int trigPin = 5;\nconst int echoPin = 18;\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(trigPin, OUTPUT);\n  pinMode(echoPin, INPUT);\n}\nvoid loop() {\n  digitalWrite(trigPin, LOW); delayMicroseconds(2);\n  digitalWrite(trigPin, HIGH); delayMicroseconds(10);\n  digitalWrite(trigPin, LOW);\n  long durasi = pulseIn(echoPin, HIGH);\n  int jarak = durasi * 0.034 / 2;\n  Serial.print("Jarak: "); Serial.print(jarak); Serial.println(" cm");\n  delay(500);\n}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <div class="lab-control-label">
+              <span>Geser Jarak Benda ke Sensor:</span>
+              <span id="lab-ultra-val" style="color:#38bdf8; font-weight:700;">35 cm</span>
+            </div>
+            <input type="range" class="lab-slider" id="lab-ultra" min="2" max="100" value="35" oninput="updateUltraSim()">
+          `;
+          updateUltraSim();
+        }
+      },
+      ldr: {
+        icon: '☀️',
+        title: 'Sensor Cahaya (LDR)',
+        subtitle: 'Resistor Peka Intensitas Cahaya',
+        desc: 'LDR (Light Dependent Resistor) akan menurun nilai resistansinya bila terkena cahaya terang, dan membesar hambatannya saat gelap.',
+        pinout: [
+          ['VCC', 'ESP32 3.3V', 'Tegangan masukan'],
+          ['AO / Signal', 'ESP32 GPIO 34 (ADC)', 'Pembacaan nilai analog'],
+          ['GND', 'ESP32 GND', 'Ground']
+        ],
+        code: 'const int ldrPin = 34;\nvoid setup() {\n  Serial.begin(115200);\n}\nvoid loop() {\n  int nilaiCahaya = analogRead(ldrPin);\n  Serial.print("Nilai Terang: "); Serial.println(nilaiCahaya);\n  delay(500);\n}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <div class="lab-control-label">
+              <span>Kondisi Cahaya Ruangan:</span>
+              <span id="lab-ldr-val" style="color:#38bdf8; font-weight:700;">Terang (70%)</span>
+            </div>
+            <input type="range" class="lab-slider" id="lab-ldr" min="0" max="100" value="70" oninput="updateLdrSim()">
+          `;
+          updateLdrSim();
+        }
+      },
+      pir: {
+        icon: '🚶',
+        title: 'Sensor Gerak (PIR)',
+        subtitle: 'Deteksi Gerakan Panas Tubuh Manusia',
+        desc: 'Mendeteksi perubahan pancaran radiasi inframerah termal saat tubuh manusia atau hewan bergerak melintasi jangkauan sudut sensor.',
+        pinout: [
+          ['VCC', 'ESP32 5V', 'Daya masukan'],
+          ['OUT', 'ESP32 GPIO 13', 'Sinyal Digital HIGH / LOW'],
+          ['GND', 'ESP32 GND', 'Ground']
+        ],
+        code: 'const int pirPin = 13;\nvoid setup() {\n  Serial.begin(115200);\n  pinMode(pirPin, INPUT);\n}\nvoid loop() {\n  int statusGerak = digitalRead(pirPin);\n  if (statusGerak == HIGH) {\n    Serial.println("Ada Gerakan Terdeteksi!");\n  }\n  delay(300);\n}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <button type="button" class="open-lab-btn" style="background:#10b981;" onclick="triggerPirMotion()">🚶 Gerakkan Orang Lewat Depan Sensor</button>
+          `;
+          updatePirSim(false);
+        }
+      },
+      esp32: {
+        icon: '🔌',
+        title: 'ESP32 Development Board',
+        subtitle: 'Otak IoT Dual-Core WiFi & Bluetooth',
+        desc: 'ESP32 adalah mikrokontroler canggih buatan Espressif yang memiliki Wi-Fi 802.11 b/g/n dan Bluetooth 4.2 BLE bawaan untuk terhubung langsung ke internet.',
+        pinout: [
+          ['VIN / 5V', 'Sumber daya USB 5V', 'Power supply'],
+          ['3V3', 'Output tegangan 3.3V', 'Bisa menyuplai sensor'],
+          ['GND', 'Ground', 'Massa sirkuit'],
+          ['GPIO Pin', 'Pin I/O Digital/Analog', 'Terhubung ke sensor/aktuator']
+        ],
+        code: '#include <WiFi.h>\nconst char* ssid = "WiFi_Rumah";\nconst char* password = "Password123";\n\nvoid setup() {\n  Serial.begin(115200);\n  WiFi.begin(ssid, password);\n  while (WiFi.status() != WL_CONNECTED) {\n    delay(500); Serial.print(".");\n  }\n  Serial.println("\\nWiFi Terhubung!");\n  Serial.println(WiFi.localIP());\n}\nvoid loop() {}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <button type="button" class="open-lab-btn" onclick="testEspWifi()">📡 Uji Coba Sambungkan ESP32 ke WiFi</button>
+          `;
+          var vis = document.getElementById('m-visual');
+          vis.innerHTML = '<span style="font-size:24px;">📶</span><div style="font-size:12px; font-weight:700;">Status ESP32: Siap Dites</div>';
+          document.getElementById('m-serial').innerText = '[Serial]: ESP32 Booting OK. Menunggu perintah...';
+        }
+      },
+      buzzer: {
+        icon: '🚨',
+        title: 'Active Buzzer 5V',
+        subtitle: 'Aktuator Indikator Suara Alarm',
+        desc: 'Buzzer aktif memiliki osilator internal, sehingga cukup diberi sinyal logika HIGH untuk menghasilkan bunyi frekuensi tinggi secara terus-menerus.',
+        pinout: [
+          ['VCC (+)', 'ESP32 GPIO 23', 'Pin kontrol trigger'],
+          ['GND (-)', 'ESP32 GND', 'Ground']
+        ],
+        code: 'const int buzzerPin = 23;\nvoid setup() {\n  pinMode(buzzerPin, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(buzzerPin, HIGH); // Bunyi\n  delay(300);\n  digitalWrite(buzzerPin, LOW);  // Diam\n  delay(300);\n}',
+        initLab: function() {
+          var ctrl = document.getElementById('m-controls');
+          ctrl.innerHTML = `
+            <div style="display:flex; gap:8px;">
+              <button type="button" class="open-lab-btn" style="background:#ef4444;" onclick="triggerBuzzer(true)">🔔 Bunyikan Alarm</button>
+              <button type="button" class="open-lab-btn" style="background:#64748b;" onclick="triggerBuzzer(false)">🔇 Matikan Alarm</button>
+            </div>
+          `;
+          triggerBuzzer(false);
+        }
       }
-    }
+    };
 
-    // Jalankan pertama kali dan interval 5 detik
-    fetchLiveData();
-    setInterval(fetchLiveData, 5000);
+    // --- 2. BUKA & TUTUP MODAL LAB SENSOR ---
+    function openSensorLab(sensorKey) {
+      var item = SENSOR_DATABASE[sensorKey];
+      if (!item) return;
 
-    // --- 2. SIMULATOR LOGIKA IOT ---
-    function runSimulation() {
-      var suhu = parseFloat(document.getElementById('sim-suhu').value);
-      var lembab = parseFloat(document.getElementById('sim-lembab').value);
-      var jarak = parseFloat(document.getElementById('sim-jarak').value);
+      document.getElementById('m-icon').innerText = item.icon;
+      document.getElementById('m-title').innerText = item.title;
+      document.getElementById('m-sub').innerText = item.subtitle;
+      document.getElementById('m-desc').innerText = item.desc;
+      document.getElementById('m-code').innerText = item.code;
 
-      document.getElementById('sim-suhu-val').innerText = suhu;
-      document.getElementById('sim-lembab-val').innerText = lembab;
-      document.getElementById('sim-jarak-val').innerText = jarak;
-
-      // Logika Kipas: Suhu > 32 °C
-      var kipasEl = document.getElementById('status-kipas');
-      if (suhu > 32) {
-        kipasEl.innerText = 'Kipas NYALA 🔥';
-        kipasEl.className = 'status-on';
-      } else {
-        kipasEl.innerText = 'Kipas MATI';
-        kipasEl.className = 'status-off';
-      }
-
-      // Logika Buzzer: Jarak < 15 cm
-      var buzzerEl = document.getElementById('status-buzzer');
-      if (jarak < 15) {
-        buzzerEl.innerText = 'Buzzer BUNYI 🚨';
-        buzzerEl.className = 'status-on';
-      } else {
-        buzzerEl.innerText = 'Buzzer MATI';
-        buzzerEl.className = 'status-off';
-      }
-
-      // Logika Pompa Air: Kelembapan < 40%
-      var pompaEl = document.getElementById('status-pompa');
-      if (lembab < 40) {
-        pompaEl.innerText = 'Pompa NYALA 💧';
-        pompaEl.className = 'status-on';
-      } else {
-        pompaEl.innerText = 'Pompa MATI';
-        pompaEl.className = 'status-off';
-      }
-    }
-
-    // Inisialisasi simulator awal
-    runSimulation();
-
-    // --- 3. KUIS ---
-    function checkQuiz(btn, isCorrect) {
-      var allOpts = document.querySelectorAll('.quiz-opt');
-      allOpts.forEach(function(opt) {
-        opt.classList.remove('selected-correct', 'selected-wrong');
+      // Isi Tabel Pinout
+      var pinoutHtml = '<tr><th>Pin Sensor</th><th>Koneksi ESP32</th><th>Keterangan</th></tr>';
+      item.pinout.forEach(function(row) {
+        pinoutHtml += '<tr><td><strong>' + row[0] + '</strong></td><td>' + row[1] + '</td><td>' + row[2] + '</td></tr>';
       });
+      document.getElementById('m-pinout').innerHTML = pinoutHtml;
 
-      var resultEl = document.getElementById('quiz-result');
-      if (isCorrect) {
-        btn.classList.add('selected-correct');
-        resultEl.innerText = 'Benar! 🎉 Sensor Ultrasonic menghitung waktu pantulan gelombang suara.';
-        resultEl.className = 'quiz-result correct';
-      } else {
-        btn.classList.add('selected-wrong');
-        resultEl.innerText = 'Kurang tepat! Coba pilih sensor jarak yang lain.';
-        resultEl.className = 'quiz-result wrong';
-      }
+      // Inisialisasi simulator khusus
+      item.initLab();
+
+      document.getElementById('sensor-modal').style.display = 'flex';
     }
 
-    // --- 4. TOAST NOTIFIKASI ---
-    function showToast(message) {
-      var toast = document.getElementById('toast');
-      toast.innerText = message || 'Pendaftaran berhasil!';
-      toast.classList.add('show');
+    function closeSensorModal() {
+      document.getElementById('sensor-modal').style.display = 'none';
+    }
+
+    // --- 3. LOGIKA SIMULASI DI DALAM MODAL ---
+    function updateDhtSim() {
+      var t = document.getElementById('lab-dht-t').value;
+      var h = document.getElementById('lab-dht-h').value;
+      document.getElementById('lab-dht-t-val').innerText = t + ' °C';
+      document.getElementById('lab-dht-h-val').innerText = h + ' %';
+
+      var vis = document.getElementById('m-visual');
+      var color = t > 32 ? '#f87171' : '#38bdf8';
+      vis.innerHTML = `
+        <div style="font-size:26px;">🌡️</div>
+        <div style="font-size:14px; font-weight:800; color:${color};">${t} °C | ${h} %</div>
+        <div style="font-size:11px; color:#cbd5e1;">${t > 32 ? '🔥 Ruangan Panas! Kipas diaktifkan.' : '❄️ Suhu Sejuk Nyaman.'}</div>
+      `;
+      document.getElementById('m-serial').innerText = `[Serial Monitor]: readHumidity() = ${h}% | readTemperature() = ${t}°C`;
+    }
+
+    function updateUltraSim() {
+      var d = document.getElementById('lab-ultra').value;
+      document.getElementById('lab-ultra-val').innerText = d + ' cm';
+
+      var vis = document.getElementById('m-visual');
+      var isNear = d < 15;
+      vis.innerHTML = `
+        <div style="font-size:24px;">${isNear ? '⚠️ 🚨' : '🦇 🟢'}</div>
+        <div style="font-size:14px; font-weight:800; color:${isNear ? '#ef4444' : '#4ade80'};">Jarak: ${d} cm</div>
+        <div style="font-size:11px; color:#cbd5e1;">${isNear ? 'BAHAYA! Objek terlalu dekat!' : 'Aman. Area kosong.'}</div>
+      `;
+      document.getElementById('m-serial').innerText = `[Serial]: Trig sent -> Echo pulse = ${Math.round(d / 0.034 * 2)} us -> Jarak = ${d} cm`;
+    }
+
+    function updateLdrSim() {
+      var l = document.getElementById('lab-ldr').value;
+      var isDark = l < 30;
+      document.getElementById('lab-ldr-val').innerText = isDark ? 'Gelap (' + l + '%)' : 'Terang (' + l + '%)';
+
+      var vis = document.getElementById('m-visual');
+      vis.innerHTML = `
+        <div style="font-size:26px;">${isDark ? '🌙 💡' : '☀️'}</div>
+        <div style="font-size:13px; font-weight:800; color:${isDark ? '#fbbf24' : '#38bdf8'};">
+          ${isDark ? 'KONDISI GELAP: Lampu Nyala Otomatis!' : 'KONDISI TERANG: Lampu Padam.'}
+        </div>
+      `;
+      document.getElementById('m-serial').innerText = `[Serial ADC]: analogRead(GPIO34) = ${Math.round(l * 40.95)} (Range 0 - 4095)`;
+    }
+
+    function triggerPirMotion() {
+      var vis = document.getElementById('m-visual');
+      vis.innerHTML = `
+        <div style="font-size:26px;">🏃 🚨</div>
+        <div style="font-size:13px; font-weight:800; color:#ef4444;">ADA GERAKAN MANUSIA TERDETEKSI!</div>
+      `;
+      document.getElementById('m-serial').innerText = '[Serial]: digitalRead(13) = HIGH -> PIR DETECTED MOTION!';
       setTimeout(function() {
-        toast.classList.remove('show');
-      }, 4000);
+        vis.innerHTML = `
+          <div style="font-size:24px;">🚶 ⚪</div>
+          <div style="font-size:12px; color:#cbd5e1;">Menunggu gerakan berikutnya...</div>
+        `;
+        document.getElementById('m-serial').innerText = '[Serial]: digitalRead(13) = LOW -> Area Sunyi.';
+      }, 2500);
+    }
+    function updatePirSim() {
+      var vis = document.getElementById('m-visual');
+      vis.innerHTML = '<div style="font-size:24px;">🚶 ⚪</div><div style="font-size:12px; color:#cbd5e1;">Klik tombol di atas untuk mensimulasikan gerakan.</div>';
+      document.getElementById('m-serial').innerText = '[Serial]: PIR Siap mendeteksi...';
     }
 
-    // --- 5. FORM SUBMISSION & VALIDASI ---
-    function handleFormSubmit(e) {
+    function testEspWifi() {
+      var vis = document.getElementById('m-visual');
+      var ser = document.getElementById('m-serial');
+      vis.innerHTML = '<div style="font-size:24px;">⏳</div><div style="font-size:12px;">Menghubungkan ke WiFi...</div>';
+      ser.innerText = '[Serial]: Connecting to SSID...';
+
+      setTimeout(function() {
+        vis.innerHTML = `
+          <div style="font-size:26px;">🌐 🟢</div>
+          <div style="font-size:13px; font-weight:800; color:#4ade80;">TERHUBUNG KE INTERNET!</div>
+          <div style="font-size:11px; color:#cbd5e1;">IP: 192.168.1.105 | Sinyal: Kuat (-52dBm)</div>
+        `;
+        ser.innerText = '[Serial]: WiFi Connected! IP Address: 192.168.1.105. ESP32 siap kirim data IoT.';
+      }, 1200);
+    }
+
+    function triggerBuzzer(state) {
+      var vis = document.getElementById('m-visual');
+      if (state) {
+        vis.innerHTML = '<div style="font-size:28px;">📢 🚨</div><div style="font-size:14px; font-weight:800; color:#ef4444;">BEEEEP! BUZZER BERBUNYI!</div>';
+        document.getElementById('m-serial').innerText = '[Serial]: digitalWrite(23, HIGH) -> Buzzer ON.';
+      } else {
+        vis.innerHTML = '<div style="font-size:24px;">🔇</div><div style="font-size:12px; color:#94a3b8;">Buzzer Diam / Standby.</div>';
+        document.getElementById('m-serial').innerText = '[Serial]: digitalWrite(23, LOW) -> Buzzer OFF.';
+      }
+    }
+
+    // --- 4. FILTER HARDWARE LIST ---
+    function filterHw(cat, btn) {
+      document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('active'); });
+      btn.classList.add('active');
+
+      document.querySelectorAll('.sensor-item-card').forEach(function(card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // --- 5. SIMULATOR GLOBAL ---
+    function runSimGlobal() {
+      var s = parseFloat(document.getElementById('sim-suhu').value);
+      var l = parseFloat(document.getElementById('sim-lembab').value);
+      var j = parseFloat(document.getElementById('sim-jarak').value);
+
+      document.getElementById('sim-suhu-val').innerText = s;
+      document.getElementById('sim-lembab-val').innerText = l;
+      document.getElementById('sim-jarak-val').innerText = j;
+
+      var kEl = document.getElementById('status-kipas');
+      kEl.innerText = (s > 32) ? 'Kipas NYALA 🔥' : 'Kipas MATI';
+      kEl.className = (s > 32) ? 'status-on' : 'status-off';
+
+      var bEl = document.getElementById('status-buzzer');
+      bEl.innerText = (j < 15) ? 'Buzzer BUNYI 🚨' : 'Buzzer MATI';
+      bEl.className = (j < 15) ? 'status-on' : 'status-off';
+
+      var pEl = document.getElementById('status-pompa');
+      pEl.innerText = (l < 40) ? 'Pompa NYALA 💧' : 'Pompa MATI';
+      pEl.className = (l < 40) ? 'status-on' : 'status-off';
+    }
+
+    function toggleDetail(id, btn) {
+      var el = document.getElementById(id);
+      var isOpen = el.style.display === 'block';
+      el.style.display = isOpen ? 'none' : 'block';
+      btn.innerHTML = isOpen ? '▶ Lihat Skema & Alur' : '▼ Sembunyikan Alur';
+    }
+
+    // --- 6. TOAST NOTIFIKASI ---
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 3500);
+    }
+
+    // --- 7. SISTEM AKUN & AUTHENTICATION (LocalStorage) ---
+    function switchAuthTab(type) {
+      var regBtn = document.getElementById('tab-reg-btn');
+      var logBtn = document.getElementById('tab-login-btn');
+      var rForm = document.getElementById('regForm');
+      var lForm = document.getElementById('loginForm');
+
+      if (type === 'reg') {
+        regBtn.classList.add('active');
+        logBtn.classList.remove('active');
+        rForm.style.display = 'block';
+        lForm.style.display = 'none';
+      } else {
+        logBtn.classList.add('active');
+        regBtn.classList.remove('active');
+        lForm.style.display = 'block';
+        rForm.style.display = 'none';
+      }
+    }
+
+    function checkActiveSession() {
+      var userStr = localStorage.getItem('iot_active_user');
+      if (userStr) {
+        var user = JSON.parse(userStr);
+        renderMemberDashboard(user);
+      } else {
+        document.getElementById('member-dashboard').style.display = 'none';
+        document.getElementById('auth-form-container').style.display = 'block';
+      }
+    }
+
+    function renderMemberDashboard(user) {
+      document.getElementById('auth-form-container').style.display = 'none';
+      var m = document.getElementById('member-dashboard');
+      m.style.display = 'block';
+
+      document.getElementById('uc-avatar').innerText = (user.nama || 'S').charAt(0).toUpperCase();
+      document.getElementById('uc-name').innerText = user.nama;
+      document.getElementById('uc-role').innerText = 'Tingkat: ' + user.kelas;
+      document.getElementById('uc-sensor').innerText = user.sensor;
+      document.getElementById('uc-wa').innerText = user.wa;
+      document.getElementById('uc-id').innerText = 'ID: IOT-' + user.wa.slice(-4);
+    }
+
+    function handleRegister(e) {
       e.preventDefault();
+      var nama = document.getElementById('reg-nama').value.trim();
+      var wa = document.getElementById('reg-wa').value.trim();
+      var pin = document.getElementById('reg-pin').value.trim();
+      var kelas = document.getElementById('reg-kelas').value;
+      var sensor = document.getElementById('reg-sensor').value;
 
-      var nama = document.getElementById('nama').value.trim();
-      var kelas = document.getElementById('kelas').value;
-      var wa = document.getElementById('wa').value.trim();
-      var level = document.getElementById('level').value;
-      var sensor = document.getElementById('sensor').value;
-      var alat = document.getElementById('alat').value;
-      var pertanyaan = document.getElementById('pertanyaan').value.trim();
-      var setuju = document.getElementById('persetujuan').checked;
-
-      var isValid = true;
-
-      // Validasi Nama
-      if (!nama) {
-        document.getElementById('err-nama').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-nama').style.display = 'none';
+      if (!nama || wa.length < 10 || pin.length < 4) {
+        alert('Mohon isi nama lengkap, nomor WA (min 10 digit), dan PIN (min 4 angka).');
+        return;
       }
 
-      // Validasi Kelas
-      if (!kelas) {
-        document.getElementById('err-kelas').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-kelas').style.display = 'none';
+      var users = JSON.parse(localStorage.getItem('iot_registered_users') || '{}');
+      var newUser = { nama: nama, wa: wa, pin: pin, kelas: kelas, sensor: sensor };
+
+      users[wa] = newUser;
+      localStorage.setItem('iot_registered_users', JSON.stringify(users));
+      localStorage.setItem('iot_active_user', JSON.stringify(newUser));
+
+      showToast('🎉 Akun Berhasil Dibuat! Halo, ' + nama);
+      renderMemberDashboard(newUser);
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      var wa = document.getElementById('login-wa').value.trim();
+      var pin = document.getElementById('login-pin').value.trim();
+
+      var users = JSON.parse(localStorage.getItem('iot_registered_users') || '{}');
+      var user = users[wa];
+
+      if (!user) {
+        alert('Nomor WhatsApp belum terdaftar! Silakan klik "Daftar Akun Baru".');
+        return;
       }
 
-      // Validasi WA (angka & minimal 10 digit)
-      var cleanWa = wa.replace(/[^0-9]/g, '');
-      if (!wa || cleanWa.length < 10) {
-        document.getElementById('err-wa').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-wa').style.display = 'none';
+      if (user.pin !== pin) {
+        alert('PIN salah! Coba periksa kembali.');
+        return;
       }
 
-      // Validasi Level
-      if (!level) {
-        document.getElementById('err-level').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-level').style.display = 'none';
-      }
+      localStorage.setItem('iot_active_user', JSON.stringify(user));
+      showToast('Login berhasil! Selamat datang kembali, ' + user.nama);
+      renderMemberDashboard(user);
+    }
 
-      // Validasi Sensor
-      if (!sensor) {
-        document.getElementById('err-sensor').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-sensor').style.display = 'none';
-      }
-
-      // Validasi Alat
-      if (!alat) {
-        document.getElementById('err-alat').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-alat').style.display = 'none';
-      }
-
-      // Validasi Persetujuan
-      if (!setuju) {
-        document.getElementById('err-setuju').style.display = 'block';
-        isValid = false;
-      } else {
-        document.getElementById('err-setuju').style.display = 'none';
-      }
-
-      if (!isValid) return;
-
-      var submitBtn = document.getElementById('btn-submit');
-      submitBtn.disabled = true;
-      submitBtn.innerText = 'Menyimpan data...';
-
-      var payload = {
-        nama: nama,
-        kelas: kelas,
-        wa: wa,
-        level: level,
-        sensor: sensor,
-        alat: alat,
-        pertanyaan: pertanyaan
-      };
-
-      if (typeof google !== 'undefined' && google.script && google.script.run) {
-        google.script.run
-          .withSuccessHandler(function(response) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Daftar & Mulai Belajar';
-            document.getElementById('regForm').reset();
-            showToast('Pendaftaran Berhasil! Data Anda telah tersimpan.');
-          })
-          .withFailureHandler(function(err) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'Daftar & Mulai Belajar';
-            alert('Terjadi kesalahan saat menyimpan: ' + (err.message || err));
-          })
-          .savePendaftar(payload);
-      } else {
-        // Fallback testing lokal
-        setTimeout(function() {
-          submitBtn.disabled = false;
-          submitBtn.innerText = 'Daftar & Mulai Belajar';
-          document.getElementById('regForm').reset();
-          showToast('Pendaftaran Berhasil (Mode Demo)!');
-        }, 1000);
+    function logoutUser() {
+      if (confirm('Keluar dari akun siswa ini?')) {
+        localStorage.removeItem('iot_active_user');
+        checkActiveSession();
+        showToast('Anda telah keluar.');
       }
     }
+
+    // Inisialisasi awal
+    checkActiveSession();
+    runSimGlobal();
   </script>
 </body>
 </html>
