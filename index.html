@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Belajar IoT & Sensor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #e5e7eb;
+      color: #1f2937;
+      display: flex;
+      justify-content: center;
+      padding: 16px 8px;
+    }
+
+    .mobile-container {
+      width: 100%;
+      max-width: 390px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Card Base */
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Header */
+    .header-card {
+      background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%);
+      color: #ffffff;
+      padding: 20px 16px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .header-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      background-color: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .header-sub {
+      font-size: 13px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Live Data Cards */
+    .live-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .live-item {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+
+    .live-label {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .live-val {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .live-footer {
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pulse-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* Simulator */
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .slider-input {
+      width: 100%;
+      height: 6px;
+      border-radius: 4px;
+      background: #e2e8f0;
+      outline: none;
+      accent-color: #0284c7;
+      cursor: pointer;
+    }
+
+    .sim-status-box {
+      background-color: #f0fdf4;
+      border: 1px dashed #86efac;
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sim-tag {
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .status-on {
+      color: #dc2626;
+      background-color: #fee2e2;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .status-off {
+      color: #16a34a;
+      background-color: #dcfce7;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Jalur Belajar */
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+    }
+
+    .track-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #0284c7;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .track-info h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .track-info p {
+      font-size: 11px;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    /* Kuis */
+    .quiz-q {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 10px;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-opt {
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 12px;
+      color: #334155;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .quiz-opt:hover {
+      background: #f1f5f9;
+    }
+
+    .quiz-opt.selected-correct {
+      border-color: #22c55e;
+      background: #f0fdf4;
+      color: #15803d;
+      font-weight: 700;
+    }
+
+    .quiz-opt.selected-wrong {
+      border-color: #ef4444;
+      background: #fef2f2;
+      color: #b91c1c;
+      font-weight: 700;
+    }
+
+    .quiz-result {
+      font-size: 12px;
+      font-weight: 700;
+      min-height: 18px;
+    }
+
+    .quiz-result.correct {
+      color: #16a34a;
+    }
+
+    .quiz-result.wrong {
+      color: #dc2626;
+    }
+
+    /* Form Pendaftaran */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      outline: none;
+      background-color: #ffffff;
+      color: #1f2937;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .form-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .form-checkbox input {
+      margin-top: 3px;
+      cursor: pointer;
+    }
+
+    .form-checkbox label {
+      font-size: 11px;
+      color: #4b5563;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+
+    .err-msg {
+      font-size: 11px;
+      color: #dc2626;
+      display: none;
+      margin-top: 2px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+      color: #ffffff;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background-color: #10b981;
+      color: #ffffff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+      z-index: 9999;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+      text-align: center;
+      max-width: 350px;
+      width: 90%;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Pendaftaran berhasil! Selamat belajar IoT.</div>
+
+  <div class="mobile-container">
+    
+    <!-- 1. Header -->
+    <div class="header-card">
+      <div class="header-top">
+        <div class="header-title">Belajar IoT</div>
+        <div class="badge">Gratis • Pemula</div>
+      </div>
+      <div class="header-sub">Platform edukasi dasar mikrokontroler & sensor pintar untuk masa depan.</div>
+    </div>
+
+    <!-- 2. Data Live -->
+    <div class="card">
+      <div class="section-title">📡 Data Sensor Live</div>
+      <div class="live-grid">
+        <div class="live-item">
+          <div class="live-label">Suhu</div>
+          <div class="live-val" id="val-suhu">-- °C</div>
+        </div>
+        <div class="live-item">
+          <div class="live-label">Kelembapan</div>
+          <div class="live-val" id="val-kelembapan">-- %</div>
+        </div>
+        <div class="live-item">
+          <div class="live-label">Jarak</div>
+          <div class="live-val" id="val-jarak">-- cm</div>
+        </div>
+      </div>
+      <div class="live-footer">
+        <span><span class="pulse-dot"></span> Auto-update (5s)</span>
+        <span id="last-update">Memuat data...</span>
+      </div>
+    </div>
+
+    <!-- 3. Simulator -->
+    <div class="card">
+      <div class="section-title">🎛️ Simulator Logika IoT</div>
+      <div class="slider-group">
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Suhu: <strong id="sim-suhu-val">28</strong>°C</span>
+            <span style="font-size: 11px; color:#64748b;">(Ambang: &gt; 32°C)</span>
+          </div>
+          <input type="range" class="slider-input" id="sim-suhu" min="15" max="50" value="28" oninput="runSimulation()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Kelembapan: <strong id="sim-lembab-val">60</strong>%</span>
+            <span style="font-size: 11px; color:#64748b;">(Ambang: &lt; 40%)</span>
+          </div>
+          <input type="range" class="slider-input" id="sim-lembab" min="10" max="100" value="60" oninput="runSimulation()">
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-header">
+            <span>Jarak Objek: <strong id="sim-jarak-val">30</strong> cm</span>
+            <span style="font-size: 11px; color:#64748b;">(Ambang: &lt; 15 cm)</span>
+          </div>
+          <input type="range" class="slider-input" id="sim-jarak" min="2" max="100" value="30" oninput="runSimulation()">
+        </div>
+      </div>
+
+      <div class="sim-status-box">
+        <div class="sim-tag">
+          <span>Kipas Pendingin:</span>
+          <span id="status-kipas" class="status-off">Kipas MATI</span>
+        </div>
+        <div class="sim-tag">
+          <span>Buzzer Alarm:</span>
+          <span id="status-buzzer" class="status-off">Buzzer MATI</span>
+        </div>
+        <div class="sim-tag">
+          <span>Pompa Air:</span>
+          <span id="status-pompa" class="status-off">Pompa MATI</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Jalur Belajar -->
+    <div class="card">
+      <div class="section-title">🗺️ Jalur Belajar</div>
+      <div class="track-list">
+        <div class="track-item">
+          <div class="track-num">1</div>
+          <div class="track-info">
+            <h4>Level 1: Dasar IoT</h4>
+            <p>Pahami input, proses, output mikrokontroler (ESP32/Arduino) dan koneksi WiFi.</p>
+          </div>
+        </div>
+        <div class="track-item">
+          <div class="track-num">2</div>
+          <div class="track-info">
+            <h4>Level 2: Kenal Sensor</h4>
+            <p>Eksplorasi sensor DHT11, Ultrasonic HC-SR04, LDR, serta pembacaan sinyal digital/analog.</p>
+          </div>
+        </div>
+        <div class="track-item">
+          <div class="track-num">3</div>
+          <div class="track-info">
+            <h4>Level 3: Bikin Project</h4>
+            <p>Bangun smart home otomatis, kirim data ke Google Sheets, dan monitoring via smartphone.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Kuis -->
+    <div class="card">
+      <div class="section-title">❓ Kuis Singkat</div>
+      <div class="quiz-q">Sensor apa yang memanfaatkan pantulan gelombang suara untuk mengukur jarak?</div>
+      <div class="quiz-options">
+        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">A. DHT11</button>
+        <button type="button" class="quiz-opt" onclick="checkQuiz(this, true)">B. Ultrasonic HC-SR04</button>
+        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">C. Sensor Sentuh TTP223</button>
+        <button type="button" class="quiz-opt" onclick="checkQuiz(this, false)">D. Passive Buzzer</button>
+      </div>
+      <div class="quiz-result" id="quiz-result"></div>
+    </div>
+
+    <!-- 6. Form Pendaftaran -->
+    <div class="card">
+      <div class="section-title">📝 Formulir Pendaftaran</div>
+      <form id="regForm" onsubmit="handleFormSubmit(event)" novalidate>
+        
+        <div class="form-group">
+          <label for="nama">Nama Lengkap *</label>
+          <input type="text" id="nama" placeholder="Contoh: Budi Pratama">
+          <span class="err-msg" id="err-nama">Nama lengkap wajib diisi.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="kelas">Umur / Tingkat *</label>
+          <select id="kelas">
+            <option value="">-- Pilih Kategori --</option>
+            <option value="SMP">SMP</option>
+            <option value="SMA/SMK">SMA / SMK</option>
+            <option value="Mahasiswa">Mahasiswa</option>
+            <option value="Umum">Umum</option>
+          </select>
+          <span class="err-msg" id="err-kelas">Silakan pilih kategori umur/tingkat.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="wa">Nomor WhatsApp *</label>
+          <input type="tel" id="wa" placeholder="Contoh: 081234567890">
+          <span class="err-msg" id="err-wa">Nomor WhatsApp wajib diisi (minimal 10 digit).</span>
+        </div>
+
+        <div class="form-group">
+          <label for="level">Level Yang Mau Dipelajari *</label>
+          <select id="level">
+            <option value="">-- Pilih Level --</option>
+            <option value="Level 1 Dasar IoT">Level 1: Dasar IoT</option>
+            <option value="Level 2 Kenal Sensor">Level 2: Kenal Sensor</option>
+            <option value="Level 3 Bikin Project">Level 3: Bikin Project</option>
+          </select>
+          <span class="err-msg" id="err-level">Pilih level yang ingin kamu pelajari.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="sensor">Sensor Favorit *</label>
+          <select id="sensor">
+            <option value="">-- Pilih Sensor Favorit --</option>
+            <option value="ESP32">ESP32 (Board IoT)</option>
+            <option value="DHT11">DHT11 (Suhu & Kelembapan)</option>
+            <option value="Ultrasonic">Ultrasonic (Jarak)</option>
+            <option value="Buzzer">Buzzer (Alarm Suara)</option>
+            <option value="Sensor Sentuh">Sensor Sentuh (Touch Sensor)</option>
+          </select>
+          <span class="err-msg" id="err-sensor">Pilih sensor yang paling menarik bagimu.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="alat">Punya Alat Sendiri? *</label>
+          <select id="alat">
+            <option value="">-- Pilih Status Alat --</option>
+            <option value="Sudah Punya">Sudah Punya Alat / Modul</option>
+            <option value="Belum Punya (Mau Beli)">Belum Punya, Berencana Beli</option>
+            <option value="Tidak Punya (Simulasi Saja)">Tidak Punya (Hanya Mau Simulasi)</option>
+          </select>
+          <span class="err-msg" id="err-alat">Silakan beri tahu ketersediaan alatmu.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="pertanyaan">Pertanyaan / Catatan (Opsional)</label>
+          <textarea id="pertanyaan" placeholder="Tuliskan jika ada pertanyaan atau topik yang ingin dibahas..."></textarea>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="persetujuan">
+          <label for="persetujuan">Saya setuju mengikuti alur belajar dan bersedia menerima link materi via WhatsApp.</label>
+        </div>
+        <span class="err-msg" id="err-setuju" style="margin-bottom: 10px;">Kamu harus mencentang persetujuan ini.</span>
+
+        <button type="submit" class="submit-btn" id="btn-submit">Daftar & Mulai Belajar</button>
+      </form>
+    </div>
+
+  </div>
+
+  <script>
+    // --- 1. LIVE DATA & AUTO REFRESH ---
+    function fetchLiveData() {
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(function(res) {
+            if (res) {
+              document.getElementById('val-suhu').innerText = res.suhu + ' °C';
+              document.getElementById('val-kelembapan').innerText = res.kelembapan + ' %';
+              document.getElementById('val-jarak').innerText = res.jarak + ' cm';
+              document.getElementById('last-update').innerText = res.waktu || 'Baru saja';
+            }
+          })
+          .withFailureHandler(function(err) {
+            console.error(err);
+            document.getElementById('last-update').innerText = 'Gagal memuat';
+          })
+          .getLatestData();
+      } else {
+        // Fallback demo jika dibuka di preview browser tanpa Apps Script backend
+        var randomSuhu = (26 + Math.random() * 4).toFixed(1);
+        var randomLembab = Math.floor(55 + Math.random() * 15);
+        var randomJarak = Math.floor(15 + Math.random() * 30);
+        document.getElementById('val-suhu').innerText = randomSuhu + ' °C';
+        document.getElementById('val-kelembapan').innerText = randomLembab + ' %';
+        document.getElementById('val-jarak').innerText = randomJarak + ' cm';
+        document.getElementById('last-update').innerText = new Date().toLocaleTimeString('id-ID');
+      }
+    }
+
+    // Jalankan pertama kali dan interval 5 detik
+    fetchLiveData();
+    setInterval(fetchLiveData, 5000);
+
+    // --- 2. SIMULATOR LOGIKA IOT ---
+    function runSimulation() {
+      var suhu = parseFloat(document.getElementById('sim-suhu').value);
+      var lembab = parseFloat(document.getElementById('sim-lembab').value);
+      var jarak = parseFloat(document.getElementById('sim-jarak').value);
+
+      document.getElementById('sim-suhu-val').innerText = suhu;
+      document.getElementById('sim-lembab-val').innerText = lembab;
+      document.getElementById('sim-jarak-val').innerText = jarak;
+
+      // Logika Kipas: Suhu > 32 °C
+      var kipasEl = document.getElementById('status-kipas');
+      if (suhu > 32) {
+        kipasEl.innerText = 'Kipas NYALA 🔥';
+        kipasEl.className = 'status-on';
+      } else {
+        kipasEl.innerText = 'Kipas MATI';
+        kipasEl.className = 'status-off';
+      }
+
+      // Logika Buzzer: Jarak < 15 cm
+      var buzzerEl = document.getElementById('status-buzzer');
+      if (jarak < 15) {
+        buzzerEl.innerText = 'Buzzer BUNYI 🚨';
+        buzzerEl.className = 'status-on';
+      } else {
+        buzzerEl.innerText = 'Buzzer MATI';
+        buzzerEl.className = 'status-off';
+      }
+
+      // Logika Pompa Air: Kelembapan < 40%
+      var pompaEl = document.getElementById('status-pompa');
+      if (lembab < 40) {
+        pompaEl.innerText = 'Pompa NYALA 💧';
+        pompaEl.className = 'status-on';
+      } else {
+        pompaEl.innerText = 'Pompa MATI';
+        pompaEl.className = 'status-off';
+      }
+    }
+
+    // Inisialisasi simulator awal
+    runSimulation();
+
+    // --- 3. KUIS ---
+    function checkQuiz(btn, isCorrect) {
+      var allOpts = document.querySelectorAll('.quiz-opt');
+      allOpts.forEach(function(opt) {
+        opt.classList.remove('selected-correct', 'selected-wrong');
+      });
+
+      var resultEl = document.getElementById('quiz-result');
+      if (isCorrect) {
+        btn.classList.add('selected-correct');
+        resultEl.innerText = 'Benar! 🎉 Sensor Ultrasonic menghitung waktu pantulan gelombang suara.';
+        resultEl.className = 'quiz-result correct';
+      } else {
+        btn.classList.add('selected-wrong');
+        resultEl.innerText = 'Kurang tepat! Coba pilih sensor jarak yang lain.';
+        resultEl.className = 'quiz-result wrong';
+      }
+    }
+
+    // --- 4. TOAST NOTIFIKASI ---
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      toast.innerText = message || 'Pendaftaran berhasil!';
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // --- 5. FORM SUBMISSION & VALIDASI ---
+    function handleFormSubmit(e) {
+      e.preventDefault();
+
+      var nama = document.getElementById('nama').value.trim();
+      var kelas = document.getElementById('kelas').value;
+      var wa = document.getElementById('wa').value.trim();
+      var level = document.getElementById('level').value;
+      var sensor = document.getElementById('sensor').value;
+      var alat = document.getElementById('alat').value;
+      var pertanyaan = document.getElementById('pertanyaan').value.trim();
+      var setuju = document.getElementById('persetujuan').checked;
+
+      var isValid = true;
+
+      // Validasi Nama
+      if (!nama) {
+        document.getElementById('err-nama').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-nama').style.display = 'none';
+      }
+
+      // Validasi Kelas
+      if (!kelas) {
+        document.getElementById('err-kelas').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-kelas').style.display = 'none';
+      }
+
+      // Validasi WA (angka & minimal 10 digit)
+      var cleanWa = wa.replace(/[^0-9]/g, '');
+      if (!wa || cleanWa.length < 10) {
+        document.getElementById('err-wa').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-wa').style.display = 'none';
+      }
+
+      // Validasi Level
+      if (!level) {
+        document.getElementById('err-level').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-level').style.display = 'none';
+      }
+
+      // Validasi Sensor
+      if (!sensor) {
+        document.getElementById('err-sensor').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-sensor').style.display = 'none';
+      }
+
+      // Validasi Alat
+      if (!alat) {
+        document.getElementById('err-alat').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-alat').style.display = 'none';
+      }
+
+      // Validasi Persetujuan
+      if (!setuju) {
+        document.getElementById('err-setuju').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('err-setuju').style.display = 'none';
+      }
+
+      if (!isValid) return;
+
+      var submitBtn = document.getElementById('btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Menyimpan data...';
+
+      var payload = {
+        nama: nama,
+        kelas: kelas,
+        wa: wa,
+        level: level,
+        sensor: sensor,
+        alat: alat,
+        pertanyaan: pertanyaan
+      };
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(function(response) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Daftar & Mulai Belajar';
+            document.getElementById('regForm').reset();
+            showToast('Pendaftaran Berhasil! Data Anda telah tersimpan.');
+          })
+          .withFailureHandler(function(err) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'Daftar & Mulai Belajar';
+            alert('Terjadi kesalahan saat menyimpan: ' + (err.message || err));
+          })
+          .savePendaftar(payload);
+      } else {
+        // Fallback testing lokal
+        setTimeout(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Daftar & Mulai Belajar';
+          document.getElementById('regForm').reset();
+          showToast('Pendaftaran Berhasil (Mode Demo)!');
+        }, 1000);
+      }
+    }
+  </script>
+</body>
+</html>
